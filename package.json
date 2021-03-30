@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=dev ts-node-dev src/index.ts",
-    "prod": "pm2 start ecosystem.config.js --env prod",
-    "prod:test": "NODE_ENV=prod ts-node-dev src/index.ts",
+    "prod": "pm2 start ecosystem.config.js --env prod --name=zhuoming-server",
+    "prod:test": "NODE_ENV=prod ts-node-dev src/index.ts --name=zhuoming-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
