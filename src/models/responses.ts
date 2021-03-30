@@ -3,7 +3,7 @@ import { Model, DataTypes } from 'sequelize'
 import { User } from './user'
 
 interface ResponsesInstance extends Model {
-    id: string;
+    response_id: string;
     organizer_id: string;
     leader: string;
     response_name: string;
@@ -19,7 +19,7 @@ interface ResponsesInstance extends Model {
 }
 
 const Responses = sequelize.define<ResponsesInstance>('Responses', {
-    id: {
+    response_id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
@@ -38,11 +38,11 @@ const Responses = sequelize.define<ResponsesInstance>('Responses', {
     tableName: 'responses'
 })
 
-Responses.belongsTo(User, { foreignKey: 'organizer_id', targetKey: 'id' });
+Responses.belongsTo(User, { foreignKey: 'user_id', targetKey: 'user_id' });
 User.hasMany(Responses, {
-    sourceKey: 'id',
+    sourceKey: 'user_id',
     foreignKey: {
-        name: 'organizer_id',
+        name: 'user_id',
         allowNull: false
     },
     as: 'responses',

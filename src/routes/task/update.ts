@@ -12,7 +12,7 @@ import { Task } from '../../models/task';
 const router = express.Router();
 
 router.put(
-  '/task/:id',
+  '/task/:task_id',
   // requireAuth,
   // [
   //   body('title').not().isEmpty().withMessage('Title is required'),
@@ -22,7 +22,7 @@ router.put(
   // ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const task = await Task.findOne({ where: { id: req.params.id } });
+    const task = await Task.findOne({ where: { task_id: req.params.task_id } });
 
     if (!task) {
       throw new NotFoundError();

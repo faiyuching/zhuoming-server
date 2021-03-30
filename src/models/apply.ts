@@ -4,9 +4,10 @@ import { Responses } from './responses'
 import { Group } from './group'
 import { Job } from './job'
 import { User } from './user'
+import { Task } from './task'
 
-interface TaskInstance extends Model {
-    id: string;
+interface ApplyInstance extends Model {
+    apply_id: string;
     creator: string;
     leader: string;
     group_id: string;
@@ -19,8 +20,8 @@ interface TaskInstance extends Model {
     need_people: number;
 }
 
-const Task = sequelize.define<TaskInstance>('Task', {
-    id: {
+const Apply = sequelize.define<ApplyInstance>('Task', {
+    apply_id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
@@ -34,48 +35,64 @@ const Task = sequelize.define<TaskInstance>('Task', {
     tableName: 'tasks'
 })
 
-User.hasMany(Task, {
+Apply.belongsTo(User, { foreignKey: 'user_id', targetKey: 'user_id' });
+User.hasMany(Apply, {
+    sourceKey: 'user_id',
     foreignKey: {
-        name: 'creator',
+        name: 'user_id',
         allowNull: false
     },
-    onDelete: 'RESTRICT',
-    onUpdate: 'RESTRICT'
+    as: 'tasks',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
 });
 
-User.hasMany(Task, {
-    foreignKey: {
-        name: 'leader'
-    },
-    onDelete: 'RESTRICT',
-    onUpdate: 'RESTRICT'
-});
+// Task.belongsTo(User, { foreignKey: 'leader', targetKey: 'id' });
+// User.hasMany(Task, {
+//     sourceKey: 'id',
+//     foreignKey: {
+//         name: 'leader',
+//         allowNull: false
+//     },
+//     as: 'tasks',
+//     onDelete: 'CASCADE',
+//     onUpdate: 'CASCADE',
+// });
 
-Responses.hasMany(Task, {
+Apply.belongsTo(Responses, { foreignKey: 'response_id', targetKey: 'response_id' });
+Responses.hasMany(Apply, {
+    sourceKey: 'response_id',
     foreignKey: {
         name: 'response_id',
         allowNull: false
     },
-    onDelete: 'RESTRICT',
-    onUpdate: 'RESTRICT'
+    as: 'tasks',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
 });
 
-Group.hasMany(Task, {
+Apply.belongsTo(Group, { foreignKey: 'group_id', targetKey: 'group_id' });
+Group.hasMany(Apply, {
+    sourceKey: 'group_id',
     foreignKey: {
         name: 'group_id',
         allowNull: false
     },
-    onDelete: 'RESTRICT',
-    onUpdate: 'RESTRICT'
+    as: 'tasks',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
 });
 
-Job.hasMany(Task, {
+Apply.belongsTo(Job, { foreignKey: 'job_id', targetKey: 'job_id' });
+Job.hasMany(Apply, {
+    sourceKey: 'job_id',
     foreignKey: {
         name: 'job_id',
         allowNull: false
     },
-    onDelete: 'RESTRICT',
-    onUpdate: 'RESTRICT'
+    as: 'tasks',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
 });
 
-export { Task }
+export { Apply }

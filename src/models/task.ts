@@ -6,7 +6,7 @@ import { Job } from './job'
 import { User } from './user'
 
 interface TaskInstance extends Model {
-    id: string;
+    task_id: string;
     creator: string;
     leader: string;
     group_id: string;
@@ -20,7 +20,7 @@ interface TaskInstance extends Model {
 }
 
 const Task = sequelize.define<TaskInstance>('Task', {
-    id: {
+    task_id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
@@ -34,11 +34,11 @@ const Task = sequelize.define<TaskInstance>('Task', {
     tableName: 'tasks'
 })
 
-Task.belongsTo(User, { foreignKey: 'creator', targetKey: 'id' });
+Task.belongsTo(User, { foreignKey: 'user_id', targetKey: 'user_id' });
 User.hasMany(Task, {
-    sourceKey: 'id',
+    sourceKey: 'user_id',
     foreignKey: {
-        name: 'creator',
+        name: 'user_id',
         allowNull: false
     },
     as: 'tasks',
@@ -58,9 +58,9 @@ User.hasMany(Task, {
 //     onUpdate: 'CASCADE',
 // });
 
-Task.belongsTo(Responses, { foreignKey: 'response_id', targetKey: 'id' });
+Task.belongsTo(Responses, { foreignKey: 'response_id', targetKey: 'response_id' });
 Responses.hasMany(Task, {
-    sourceKey: 'id',
+    sourceKey: 'response_id',
     foreignKey: {
         name: 'response_id',
         allowNull: false
@@ -70,9 +70,9 @@ Responses.hasMany(Task, {
     onUpdate: 'CASCADE',
 });
 
-Task.belongsTo(Group, { foreignKey: 'group_id', targetKey: 'id' });
+Task.belongsTo(Group, { foreignKey: 'group_id', targetKey: 'group_id' });
 Group.hasMany(Task, {
-    sourceKey: 'id',
+    sourceKey: 'group_id',
     foreignKey: {
         name: 'group_id',
         allowNull: false
@@ -82,9 +82,9 @@ Group.hasMany(Task, {
     onUpdate: 'CASCADE',
 });
 
-Task.belongsTo(Job, { foreignKey: 'job_id', targetKey: 'id' });
+Task.belongsTo(Job, { foreignKey: 'job_id', targetKey: 'job_id' });
 Job.hasMany(Task, {
-    sourceKey: 'id',
+    sourceKey: 'job_id',
     foreignKey: {
         name: 'job_id',
         allowNull: false

@@ -9,12 +9,12 @@ import { Group } from '../../models/group';
 const router = express.Router();
 
 router.delete(
-  '/group/:id',
+  '/group/:group_id',
   // requireAuth,
   async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const { group_id } = req.params;
 
-    const group = await Group.findOne({ where: { id: id } });
+    const group = await Group.findOne({ where: { group_id: group_id } });
 
     if (!group) {
       throw new NotFoundError();
@@ -23,7 +23,7 @@ router.delete(
     //   throw new NotAuthorizedError();
     // }
 
-    await Group.destroy({ where: { id: id } });
+    await Group.destroy({ where: { group_id: group_id } });
 
     res.status(204).send(group);
   }

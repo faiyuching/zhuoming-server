@@ -21,7 +21,7 @@ router.post(
     async (req: Request, res: Response) => {
 
         const {
-            creator,
+            user_id,
             response_id,
             group_id,
             job_id,
@@ -36,7 +36,7 @@ router.post(
         }
 
         const task = await Task.create({
-            creator,
+            user_id,
             response_id,
             group_id,
             job_id,

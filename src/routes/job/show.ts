@@ -8,12 +8,12 @@ import { Job } from '../../models/job';
 
 const router = express.Router();
 
-router.get('/job/:id',
+router.get('/job/:job_id',
     // requireAuth,
     async (req: Request, res: Response) => {
 
-        const { id } = req.params;
-        const job = await Job.findOne({ where: { id: id } });
+        const { job_id } = req.params;
+        const job = await Job.findOne({ where: { job_id: job_id } });
 
         if (!job) {
             throw new NotFoundError();

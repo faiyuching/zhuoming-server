@@ -4,7 +4,7 @@ import { Responses } from './responses';
 
 interface UserInstance extends Model {
     // id: number;
-    id: string;
+    user_id: string;
     openid_web: string;
     openid_fwh: string;
     openid_xcx: string;
@@ -37,7 +37,7 @@ const User = sequelize.define<UserInstance>('User', {
     //     unique: true,
     //     autoIncrement: true
     // },
-    id: {
+    user_id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true

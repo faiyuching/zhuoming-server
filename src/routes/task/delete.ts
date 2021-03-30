@@ -9,12 +9,12 @@ import { Task } from '../../models/task';
 const router = express.Router();
 
 router.delete(
-  '/task/:id',
+  '/task/:task_id',
   // requireAuth,
   async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const { task_id } = req.params;
 
-    const task = await Task.findOne({ where: { id: id } });
+    const task = await Task.findOne({ where: { task_id: task_id } });
 
     if (!task) {
       throw new NotFoundError();
@@ -23,7 +23,7 @@ router.delete(
     //   throw new NotAuthorizedError();
     // }
 
-    await Task.destroy({ where: { id: id } });
+    await Task.destroy({ where: { task_id: task_id } });
 
     res.status(204).send(task);
   }

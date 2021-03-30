@@ -8,12 +8,12 @@ import { Group } from '../../models/group';
 
 const router = express.Router();
 
-router.get('/group/:id',
+router.get('/group/:group_id',
     // requireAuth,
     async (req: Request, res: Response) => {
 
-        const { id } = req.params;
-        const group = await Group.findOne({ where: { id: id } });
+        const { group_id } = req.params;
+        const group = await Group.findOne({ where: { group_id: group_id } });
 
         if (!group) {
             throw new NotFoundError();

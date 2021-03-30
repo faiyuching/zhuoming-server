@@ -9,12 +9,12 @@ import { Job } from '../../models/job';
 const router = express.Router();
 
 router.delete(
-  '/job/:id',
+  '/job/:job_id',
   // requireAuth,
   async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const { job_id } = req.params;
 
-    const job = await Job.findOne({ where: { id: id } });
+    const job = await Job.findOne({ where: { job_id: job_id } });
 
     if (!job) {
       throw new NotFoundError();
@@ -23,7 +23,7 @@ router.delete(
     //   throw new NotAuthorizedError();
     // }
 
-    await Job.destroy({ where: { id: id } });
+    await Job.destroy({ where: { job_id: job_id } });
 
     res.status(204).send(job);
   }

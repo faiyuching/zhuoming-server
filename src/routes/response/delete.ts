@@ -9,12 +9,12 @@ import { Responses } from '../../models/responses';
 const router = express.Router();
 
 router.delete(
-  '/response/:id',
+  '/response/:response_id',
   // requireAuth,
   async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const { response_id } = req.params;
 
-    const response = await Responses.findOne({ where: { id: id } });
+    const response = await Responses.findOne({ where: { response_id: response_id } });
 
     if (!response) {
       throw new NotFoundError();
@@ -23,7 +23,7 @@ router.delete(
     //   throw new NotAuthorizedError();
     // }
 
-    await Responses.destroy({ where: { id: id } });
+    await Responses.destroy({ where: { response_id: response_id } });
 
     res.status(204).send(response);
   }

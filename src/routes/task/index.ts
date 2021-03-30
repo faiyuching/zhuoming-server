@@ -8,13 +8,13 @@ import { Job } from '../../models/job';
 
 const router = express.Router();
 
-router.get('/:resId/tasks',
+router.get('/tasks',
     // requireAuth,
     async (req: Request, res: Response) => {
-
+        console.log(req.query)
         const tasks = await Task.findAll({
-            where: { response_id: req.params.resId },
-            order: [['id', 'DESC']],
+            // where: { response_id: req.query.response_id },
+            order: [['task_id', 'DESC']],
             include: [User, Responses, Group, Job],
         });
         res.send(tasks);

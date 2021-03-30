@@ -22,7 +22,7 @@ router.post(
     async (req: Request, res: Response) => {
 
         const {
-            organizer_id,
+            user_id,
             response_name,
             // disaster_type,
             // response_level,
@@ -40,7 +40,7 @@ router.post(
         }
 
         const response = await Responses.create({
-            organizer_id,
+            user_id,
             response_name,
             // disaster_type,
             // response_level,

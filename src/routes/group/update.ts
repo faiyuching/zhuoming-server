@@ -12,7 +12,7 @@ import { Group } from '../../models/group';
 const router = express.Router();
 
 router.put(
-  '/group/:id',
+  '/group/:group_id',
   // requireAuth,
   // [
   //   body('title').not().isEmpty().withMessage('Title is required'),
@@ -22,7 +22,7 @@ router.put(
   // ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const group = await Group.findOne({ where: { id: req.params.id } });
+    const group = await Group.findOne({ where: { group_id: req.params.group_id } });
 
     if (!group) {
       throw new NotFoundError();

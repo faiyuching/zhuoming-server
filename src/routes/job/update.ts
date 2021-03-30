@@ -12,7 +12,7 @@ import { Job } from '../../models/job';
 const router = express.Router();
 
 router.put(
-  '/job/:id',
+  '/job/:job_id',
   // requireAuth,
   // [
   //   body('title').not().isEmpty().withMessage('Title is required'),
@@ -22,7 +22,7 @@ router.put(
   // ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const job = await Job.findOne({ where: { id: req.params.id } });
+    const job = await Job.findOne({ where: { job_id: req.params.job_id } });
 
     if (!job) {
       throw new NotFoundError();

@@ -4,7 +4,7 @@ import { Responses } from './responses'
 import { User } from './user'
 
 interface GroupInstance extends Model {
-    id: string;
+    group_id: string;
     creator: string;
     leader: string;
     response_id: string;
@@ -13,7 +13,7 @@ interface GroupInstance extends Model {
 }
 
 const Group = sequelize.define<GroupInstance>('Group', {
-    id: {
+    group_id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
@@ -24,11 +24,11 @@ const Group = sequelize.define<GroupInstance>('Group', {
     tableName: 'groups'
 })
 
-Group.belongsTo(User, { foreignKey: 'creator', targetKey: 'id' });
+Group.belongsTo(User, { foreignKey: 'user_id', targetKey: 'user_id' });
 User.hasMany(Group, {
-    sourceKey: 'id',
+    sourceKey: 'user_id',
     foreignKey: {
-        name: 'creator',
+        name: 'user_id',
         allowNull: false
     },
     as: 'groups',
@@ -48,9 +48,9 @@ User.hasMany(Group, {
 //     onUpdate: 'CASCADE',
 // });
 
-Group.belongsTo(Responses, { foreignKey: 'response_id', targetKey: 'id' });
+Group.belongsTo(Responses, { foreignKey: 'response_id', targetKey: 'response_id' });
 Responses.hasMany(Group, {
-    sourceKey: 'id',
+    sourceKey: 'response_id',
     foreignKey: {
         name: 'response_id',
         allowNull: false

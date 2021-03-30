@@ -8,12 +8,12 @@ import { Task } from '../../models/task';
 
 const router = express.Router();
 
-router.get('/task/:id',
+router.get('/task/:task_id',
     // requireAuth,
     async (req: Request, res: Response) => {
 
-        const { id } = req.params;
-        const task = await Task.findOne({ where: { id: id } });
+        const { task_id } = req.params;
+        const task = await Task.findOne({ where: { task_id: task_id } });
 
         if (!task) {
             throw new NotFoundError();

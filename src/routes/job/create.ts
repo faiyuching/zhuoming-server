@@ -21,7 +21,7 @@ router.post(
     async (req: Request, res: Response) => {
 
         const {
-            creator,
+            user_id,
             response_id,
             group_id,
             job_name,
@@ -35,7 +35,7 @@ router.post(
         }
 
         const job = await Job.create({
-            creator,
+            user_id,
             response_id,
             group_id,
             job_name,
