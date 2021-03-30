@@ -36,7 +36,7 @@ import { taskDeleteRouter } from './routes/task/delete';
 import { taskUpdateRouter } from './routes/task/update';
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors())
 app.set('trust proxy', true);
 app.use(json());
