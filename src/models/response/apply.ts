@@ -1,38 +1,43 @@
-import { sequelize } from '../sequelize'
+import { sequelize } from '../../sequelize'
 import { Model, DataTypes } from 'sequelize'
 import { Responses } from './responses'
 import { Group } from './group'
 import { Job } from './job'
-import { User } from './user'
+import { User } from '../user'
 import { Task } from './task'
 
 interface ApplyInstance extends Model {
     apply_id: string;
-    creator: string;
-    leader: string;
-    group_id: string;
-    response_id: string;
-    job_id: string;
-    task_name: string;
+    status: string;
+    role: string;
     description: string;
+    fail_reason: string;
     begin_time: Date;
     end_time: Date;
-    need_people: number;
 }
 
-const Apply = sequelize.define<ApplyInstance>('Task', {
+const Apply = sequelize.define<ApplyInstance>('Apply', {
     apply_id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
     },
-    task_name: DataTypes.STRING(20),
-    description: DataTypes.STRING(255),
+    status: {
+        type: DataTypes.ENUM,
+        values: ['applied', 'success', 'fail'],
+        defaultValue: 'applied'
+    },
+    role: {
+        type: DataTypes.ENUM,
+        values: ['leader', 'volunteer'],
+        defaultValue: 'volunteer'
+    },
+    description: DataTypes.STRING,
+    fail_reason: DataTypes.STRING,
     begin_time: DataTypes.DATE,
     end_time: DataTypes.DATE,
-    need_people: DataTypes.NUMBER,
 }, {
-    tableName: 'tasks'
+    tableName: 'applies'
 })
 
 Apply.belongsTo(User, { foreignKey: 'user_id', targetKey: 'user_id' });
@@ -42,22 +47,10 @@ User.hasMany(Apply, {
         name: 'user_id',
         allowNull: false
     },
-    as: 'tasks',
+    as: 'applies',
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
 });
-
-// Task.belongsTo(User, { foreignKey: 'leader', targetKey: 'id' });
-// User.hasMany(Task, {
-//     sourceKey: 'id',
-//     foreignKey: {
-//         name: 'leader',
-//         allowNull: false
-//     },
-//     as: 'tasks',
-//     onDelete: 'CASCADE',
-//     onUpdate: 'CASCADE',
-// });
 
 Apply.belongsTo(Responses, { foreignKey: 'response_id', targetKey: 'response_id' });
 Responses.hasMany(Apply, {
@@ -66,7 +59,7 @@ Responses.hasMany(Apply, {
         name: 'response_id',
         allowNull: false
     },
-    as: 'tasks',
+    as: 'applies',
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
 });
@@ -78,7 +71,7 @@ Group.hasMany(Apply, {
         name: 'group_id',
         allowNull: false
     },
-    as: 'tasks',
+    as: 'applies',
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
 });
@@ -90,7 +83,19 @@ Job.hasMany(Apply, {
         name: 'job_id',
         allowNull: false
     },
-    as: 'tasks',
+    as: 'applies',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+});
+
+Apply.belongsTo(Task, { foreignKey: 'task_id', targetKey: 'task_id' });
+Task.hasMany(Apply, {
+    sourceKey: 'task_id',
+    foreignKey: {
+        name: 'task_id',
+        allowNull: false
+    },
+    as: 'applies',
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
 });

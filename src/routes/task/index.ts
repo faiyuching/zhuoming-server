@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express';
 import { requireAuth } from '@sgtickets/common';
-import { Task } from '../../models/task';
+import { Task } from '../../models/response//task';
 import { User } from '../../models/user';
-import { Responses } from '../../models/responses';
-import { Group } from '../../models/group';
-import { Job } from '../../models/job';
+import { Responses } from '../../models/response/responses';
+import { Group } from '../../models/response/group';
+import { Job } from '../../models/response/job';
 
 const router = express.Router();
 

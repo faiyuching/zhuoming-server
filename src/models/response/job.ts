@@ -1,8 +1,8 @@
-import { sequelize } from '../sequelize'
+import { sequelize } from '../../sequelize'
 import { Model, DataTypes } from 'sequelize'
 import { Responses } from './responses'
 import { Group } from './group'
-import { User } from './user'
+import { User } from '../user'
 
 interface JobInstance extends Model {
     job_id: string;

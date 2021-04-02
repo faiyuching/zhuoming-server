@@ -7,7 +7,7 @@ import {
   NotAuthorizedError,
   BadRequestError,
 } from '@sgtickets/common';
-import { Job } from '../../models/job';
+import { Job } from '../../models/response/job';
 
 const router = express.Router();
 

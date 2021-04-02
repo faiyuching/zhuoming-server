@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
 import { requireAuth } from '@sgtickets/common';
-import { Group } from '../../models/group';
+import { Group } from '../../models/response/group';
 import { User } from '../../models/user';
-import { Responses } from '../../models/responses';
+import { Responses } from '../../models/response/responses';
 
 const router = express.Router();
 

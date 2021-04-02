@@ -1,9 +1,9 @@
-import { sequelize } from '../sequelize'
+import { sequelize } from '../../sequelize'
 import { Model, DataTypes } from 'sequelize'
 import { Responses } from './responses'
 import { Group } from './group'
 import { Job } from './job'
-import { User } from './user'
+import { User } from '../user'
 
 interface TaskInstance extends Model {
     task_id: string;

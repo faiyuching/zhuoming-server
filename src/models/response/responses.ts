@@ -1,6 +1,6 @@
-import { sequelize } from '../sequelize'
+import { sequelize } from '../../sequelize'
 import { Model, DataTypes } from 'sequelize'
-import { User } from './user'
+import { User } from '../user'
 
 interface ResponsesInstance extends Model {
     response_id: string;

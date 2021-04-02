@@ -1,7 +1,7 @@
-import { sequelize } from '../sequelize'
+import { sequelize } from '../../sequelize'
 import { Model, DataTypes } from 'sequelize'
 import { Responses } from './responses'
-import { User } from './user'
+import { User } from '../user'
 
 interface GroupInstance extends Model {
     group_id: string;

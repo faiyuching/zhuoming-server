@@ -4,7 +4,7 @@ import {
   NotFoundError,
   NotAuthorizedError,
 } from '@sgtickets/common';
-import { Task } from '../../models/task';
+import { Task } from '../../models/response/task';
 
 const router = express.Router();
 

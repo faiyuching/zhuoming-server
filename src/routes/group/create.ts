@@ -5,7 +5,7 @@ import {
     validateRequest,
     BadRequestError
 } from '@sgtickets/common';
-import { Group } from '../../models/group';
+import { Group } from '../../models/response/group';
 const router = express.Router();
 
 router.post(

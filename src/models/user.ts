@@ -1,6 +1,5 @@
 import { sequelize } from '../sequelize'
 import { Model, DataTypes } from 'sequelize'
-import { Responses } from './responses';
 
 interface UserInstance extends Model {
     // id: number;
@@ -91,9 +90,7 @@ const User = sequelize.define<UserInstance>('User', {
         defaultValue: 'user'
     },
     gender: {
-        type: DataTypes.ENUM,
-        values: ['unknow', 'male', 'female'],
-        defaultValue: 'unknow'
+        type: DataTypes.DECIMAL
     },
     country: DataTypes.STRING(20),
     province: DataTypes.STRING(20),

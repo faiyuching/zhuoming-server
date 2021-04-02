@@ -5,7 +5,7 @@ import {
     validateRequest,
     BadRequestError
 } from '@sgtickets/common';
-import { Responses } from '../../models/responses';
+import { Responses } from '../../models/response/responses';
 import { DATE } from 'sequelize/types';
 const router = express.Router();
 
