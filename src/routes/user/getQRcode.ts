@@ -21,7 +21,6 @@ router.get(
         }
 
         const qrcode = await axios.post(url, data)
-
         if (qrcode.data.errcode) {
             throw new BadRequestError(qrcode.data.errmsg);
         }
