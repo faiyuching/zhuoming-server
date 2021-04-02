@@ -41,7 +41,7 @@ const formatMessage = (jsData: any) => {
 }
 
 export const wechatSession = async (req: Request, res: Response, next: NextFunction) => {
-    console.log(req.query)
+    
     const { signature, timestamp, nonce, echostr } = req.query;
     const arrSort = [config.token, timestamp, nonce];
     arrSort.sort();
@@ -49,9 +49,9 @@ export const wechatSession = async (req: Request, res: Response, next: NextFunct
     const shaStr = sha1(str);
 
     if (shaStr !== signature) {
-        next()
+        return next()
     } else {
-
+        console.log(req.query)
         const xmlData = await getUserDataAsync(req)
         const jsData = await parseXMLAsync(xmlData)
         const message = formatMessage(jsData)

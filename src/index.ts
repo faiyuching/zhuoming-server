@@ -18,6 +18,8 @@ import { signinRouter } from './routes/user/signin';
 import { signoutRouter } from './routes/user/signout';
 import { currentUserRouter } from './routes/user/current-user';
 import { userIndexRouter } from './routes/user/index';
+import { userShowRouter } from './routes/user/show';
+import { LoginWechatBrowserRouter } from './routes/user/wechat-login-browser';
 
 import { getQRcodeRouter } from './routes/user/getQRcode';
 
@@ -86,13 +88,32 @@ app.use(cookieSession({
   secure: process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'dev',
 }))
 
+app.use(async (req, res, next) => {
+  if (Date.now() > expires_in) {
+    const access_token = await axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${config.appId}&secret=${config.appSecret}`)
+    if (!access_token.data) {
+      throw new NotFoundError();
+    } else {
+      access_token.data.expires_in = Date.now() + (access_token.data.expires_in - 300) * 1000;
+      fs.writeFile(path.join(__dirname, './accessToken.json'), JSON.stringify(access_token.data), function (err) {
+        if (err) {
+          return console.error(err);
+        }
+      })
+    }
+  }
+  next()
+});
+
 app.use(wechatSession)
 app.use(signupRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 app.use(currentUserRouter);
 app.use(userIndexRouter);
+app.use(userShowRouter);
 app.use(getQRcodeRouter);
+app.use(LoginWechatBrowserRouter);
 
 app.use(responseIndexRouter);
 app.use(responseShowRouter);
@@ -156,24 +177,6 @@ app.use(errorHandler);
 
 const start = async () => {
 
-  if (Date.now() > expires_in) {
-    const access_token = await axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${config.appId}&secret=${config.appSecret}`)
-    if (!access_token.data) {
-      throw new NotFoundError();
-    } else {
-      access_token.data.expires_in = Date.now() + (access_token.data.expires_in - 300) * 1000;
-      fs.writeFile(path.join(__dirname, './accessToken.json'), JSON.stringify(access_token.data), function (err) {
-        if (err) {
-          return console.error(err);
-        }
-      })
-    }
-  }
-
-  if (!process.env.NODE_ENV) {
-    throw new Error('NODE_ENV must be defined');
-  }
-
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
@@ -184,6 +187,7 @@ const start = async () => {
     console.error('Unable to connect to the database:', error);
   }
 }
+
 start();
 
 

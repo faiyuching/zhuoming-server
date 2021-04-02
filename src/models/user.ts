@@ -80,7 +80,7 @@ const User = sequelize.define<UserInstance>('User', {
     username: DataTypes.STRING(20),
     nickname: DataTypes.STRING(20),
     password: DataTypes.STRING(255),
-    avatar: {
+    headimgurl: {
         type: DataTypes.STRING(255),
         defaultValue: 'https://res.wx.qq.com/a/wx_fed/webwx/res/static/img/2KriyDK.png'
     },
@@ -89,7 +89,7 @@ const User = sequelize.define<UserInstance>('User', {
         values: ['super-admin', 'admin', 'volunteer', 'user'],
         defaultValue: 'user'
     },
-    gender: {
+    sex: {
         type: DataTypes.DECIMAL
     },
     country: DataTypes.STRING(20),

@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { BadRequestError, NotFoundError } from '@sgtickets/common';
+import { BadRequestError } from '@sgtickets/common';
 import { access_token } from '../../accessToken.json'
 import axios from 'axios'
 const router = express.Router();
@@ -22,10 +22,9 @@ router.get(
 
         const qrcode = await axios.post(url, data)
 
-        if (!qrcode.data) {
-            throw new NotFoundError();
+        if (qrcode.data.errcode) {
+            throw new BadRequestError(qrcode.data.errmsg);
         }
-        console.log(qrcode.data)
 
         res.send(qrcode.data);
     }
