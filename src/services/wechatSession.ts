@@ -74,10 +74,12 @@ export const wechatSession = async (req: Request, res: Response, next: NextFunct
                     country: user.data.country,
                     avatar: user.data.headimgurl
                 });
+                console.log("createUser", createUser)
                 req.session = {
                     userid: createUser.user_id
                 };
             } else {
+                console.log("createUser", existingUser)
                 req.session = {
                     userid: existingUser.user_id
                 };
