@@ -21,59 +21,59 @@ import { userIndexRouter } from './routes/user/index';
 
 import { getQRcodeRouter } from './routes/user/getQRcode';
 
-// import { responseIndexRouter } from './routes/response/index';
-// import { responseShowRouter } from './routes/response/show';
-// import { responseCreateRouter } from './routes/response/create';
-// import { responseDeleteRouter } from './routes/response/delete';
-// import { responseUpdateRouter } from './routes/response/update';
+import { responseIndexRouter } from './routes/response/index';
+import { responseShowRouter } from './routes/response/show';
+import { responseCreateRouter } from './routes/response/create';
+import { responseDeleteRouter } from './routes/response/delete';
+import { responseUpdateRouter } from './routes/response/update';
 
-// import { groupIndexRouter } from './routes/group/index';
-// import { groupShowRouter } from './routes/group/show';
-// import { groupCreateRouter } from './routes/group/create';
-// import { groupDeleteRouter } from './routes/group/delete';
-// import { groupUpdateRouter } from './routes/group/update';
+import { groupIndexRouter } from './routes/group/index';
+import { groupShowRouter } from './routes/group/show';
+import { groupCreateRouter } from './routes/group/create';
+import { groupDeleteRouter } from './routes/group/delete';
+import { groupUpdateRouter } from './routes/group/update';
 
-// import { jobIndexRouter } from './routes/job/index';
-// import { jobShowRouter } from './routes/job/show';
-// import { jobCreateRouter } from './routes/job/create';
-// import { jobDeleteRouter } from './routes/job/delete';
-// import { jobUpdateRouter } from './routes/job/update';
+import { jobIndexRouter } from './routes/job/index';
+import { jobShowRouter } from './routes/job/show';
+import { jobCreateRouter } from './routes/job/create';
+import { jobDeleteRouter } from './routes/job/delete';
+import { jobUpdateRouter } from './routes/job/update';
 
-// import { taskIndexRouter } from './routes/task/index';
-// import { taskShowRouter } from './routes/task/show';
-// import { taskCreateRouter } from './routes/task/create';
-// import { taskDeleteRouter } from './routes/task/delete';
-// import { taskUpdateRouter } from './routes/task/update';
+import { taskIndexRouter } from './routes/task/index';
+import { taskShowRouter } from './routes/task/show';
+import { taskCreateRouter } from './routes/task/create';
+import { taskDeleteRouter } from './routes/task/delete';
+import { taskUpdateRouter } from './routes/task/update';
 
-// import { applyIndexRouter } from './routes/apply/index';
-// import { applyShowRouter } from './routes/apply/show';
-// import { applyCreateRouter } from './routes/apply/create';
-// import { applyDeleteRouter } from './routes/apply/delete';
-// import { applyUpdateRouter } from './routes/apply/update';
+import { applyIndexRouter } from './routes/apply/index';
+import { applyShowRouter } from './routes/apply/show';
+import { applyCreateRouter } from './routes/apply/create';
+import { applyDeleteRouter } from './routes/apply/delete';
+import { applyUpdateRouter } from './routes/apply/update';
 
-// import { categoryIndexRouter } from './routes/category/index';
-// import { categoryShowRouter } from './routes/category/show';
-// import { categoryCreateRouter } from './routes/category/create';
-// import { categoryDeleteRouter } from './routes/category/delete';
-// import { categoryUpdateRouter } from './routes/category/update';
+import { categoryIndexRouter } from './routes/category/index';
+import { categoryShowRouter } from './routes/category/show';
+import { categoryCreateRouter } from './routes/category/create';
+import { categoryDeleteRouter } from './routes/category/delete';
+import { categoryUpdateRouter } from './routes/category/update';
 
-// import { filetypeIndexRouter } from './routes/filetype/index';
-// import { filetypeShowRouter } from './routes/filetype/show';
-// import { filetypeCreateRouter } from './routes/filetype/create';
-// import { filetypeDeleteRouter } from './routes/filetype/delete';
-// import { filetypeUpdateRouter } from './routes/filetype/update';
+import { filetypeIndexRouter } from './routes/filetype/index';
+import { filetypeShowRouter } from './routes/filetype/show';
+import { filetypeCreateRouter } from './routes/filetype/create';
+import { filetypeDeleteRouter } from './routes/filetype/delete';
+import { filetypeUpdateRouter } from './routes/filetype/update';
 
-// import { topicIndexRouter } from './routes/topic/index';
-// import { topicShowRouter } from './routes/topic/show';
-// import { topicCreateRouter } from './routes/topic/create';
-// import { topicDeleteRouter } from './routes/topic/delete';
-// import { topicUpdateRouter } from './routes/topic/update';
+import { topicIndexRouter } from './routes/topic/index';
+import { topicShowRouter } from './routes/topic/show';
+import { topicCreateRouter } from './routes/topic/create';
+import { topicDeleteRouter } from './routes/topic/delete';
+import { topicUpdateRouter } from './routes/topic/update';
 
-// import { resourceIndexRouter } from './routes/resource/index';
-// import { resourceShowRouter } from './routes/resource/show';
-// import { resourceCreateRouter } from './routes/resource/create';
-// import { resourceDeleteRouter } from './routes/resource/delete';
-// import { resourceUpdateRouter } from './routes/resource/update';
+import { resourceIndexRouter } from './routes/resource/index';
+import { resourceShowRouter } from './routes/resource/show';
+import { resourceCreateRouter } from './routes/resource/create';
+import { resourceDeleteRouter } from './routes/resource/delete';
+import { resourceUpdateRouter } from './routes/resource/update';
 
 
 const app = express();
@@ -94,77 +94,59 @@ app.use(currentUserRouter);
 app.use(userIndexRouter);
 app.use(getQRcodeRouter);
 
-// app.use(responseIndexRouter);
-// app.use(responseShowRouter);
-// app.use(responseCreateRouter);
-// app.use(responseDeleteRouter);
-// app.use(responseUpdateRouter);
+app.use(responseIndexRouter);
+app.use(responseShowRouter);
+app.use(responseCreateRouter);
+app.use(responseDeleteRouter);
+app.use(responseUpdateRouter);
 
-// app.use(groupIndexRouter);
-// app.use(groupShowRouter);
-// app.use(groupCreateRouter);
-// app.use(groupDeleteRouter);
-// app.use(groupUpdateRouter);
+app.use(groupIndexRouter);
+app.use(groupShowRouter);
+app.use(groupCreateRouter);
+app.use(groupDeleteRouter);
+app.use(groupUpdateRouter);
 
-// app.use(jobIndexRouter);
-// app.use(jobShowRouter);
-// app.use(jobCreateRouter);
-// app.use(jobDeleteRouter);
-// app.use(jobUpdateRouter);
+app.use(jobIndexRouter);
+app.use(jobShowRouter);
+app.use(jobCreateRouter);
+app.use(jobDeleteRouter);
+app.use(jobUpdateRouter);
 
-// app.use(taskIndexRouter);
-// app.use(taskShowRouter);
-// app.use(taskCreateRouter);
-// app.use(taskDeleteRouter);
-// app.use(taskUpdateRouter);
+app.use(taskIndexRouter);
+app.use(taskShowRouter);
+app.use(taskCreateRouter);
+app.use(taskDeleteRouter);
+app.use(taskUpdateRouter);
 
-// app.use(applyIndexRouter);
-// app.use(applyShowRouter);
-// app.use(applyCreateRouter);
-// app.use(applyDeleteRouter);
-// app.use(applyUpdateRouter);
+app.use(applyIndexRouter);
+app.use(applyShowRouter);
+app.use(applyCreateRouter);
+app.use(applyDeleteRouter);
+app.use(applyUpdateRouter);
 
-// app.use(categoryIndexRouter);
-// app.use(categoryShowRouter);
-// app.use(categoryCreateRouter);
-// app.use(categoryDeleteRouter);
-// app.use(categoryUpdateRouter);
+app.use(categoryIndexRouter);
+app.use(categoryShowRouter);
+app.use(categoryCreateRouter);
+app.use(categoryDeleteRouter);
+app.use(categoryUpdateRouter);
 
-// app.use(filetypeIndexRouter);
-// app.use(filetypeShowRouter);
-// app.use(filetypeCreateRouter);
-// app.use(filetypeDeleteRouter);
-// app.use(filetypeUpdateRouter);
+app.use(filetypeIndexRouter);
+app.use(filetypeShowRouter);
+app.use(filetypeCreateRouter);
+app.use(filetypeDeleteRouter);
+app.use(filetypeUpdateRouter);
 
-// app.use(topicIndexRouter);
-// app.use(topicShowRouter);
-// app.use(topicCreateRouter);
-// app.use(topicDeleteRouter);
-// app.use(topicUpdateRouter);
+app.use(topicIndexRouter);
+app.use(topicShowRouter);
+app.use(topicCreateRouter);
+app.use(topicDeleteRouter);
+app.use(topicUpdateRouter);
 
-// app.use(resourceIndexRouter);
-// app.use(resourceShowRouter);
-// app.use(resourceCreateRouter);
-// app.use(resourceDeleteRouter);
-// app.use(resourceUpdateRouter);
-
-// app.use((req, res, next) => {
-//   console.log(req.query)
-//   const { signature, timestamp, nonce, echostr } = req.query;
-//   const token = "wxfwh_Token";
-//   const arrSort = [token, timestamp, nonce];
-//   arrSort.sort();
-//   const str = arrSort.join("");
-//   const shaStr = sha1(str);
-//   if (shaStr === signature) {
-//       console.log("true")
-//       res.send(echostr);
-//   } else {
-//       console.log("false")
-//       res.send("no");
-//   }
-//   next()
-// });
+app.use(resourceIndexRouter);
+app.use(resourceShowRouter);
+app.use(resourceCreateRouter);
+app.use(resourceDeleteRouter);
+app.use(resourceUpdateRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

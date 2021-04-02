@@ -55,7 +55,7 @@ export const wechatSession = async (req: Request, res: Response, next: NextFunct
         const xmlData = await getUserDataAsync(req)
         const jsData = await parseXMLAsync(xmlData)
         const message = formatMessage(jsData)
-
+        console.log(message)
         let resMsg = ''
 
         if (req.method === "POST" && message.EventKey.indexOf('123') != -1) {
