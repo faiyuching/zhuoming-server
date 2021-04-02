@@ -1,9 +1,9 @@
-import express from 'express';
+import express, { NextFunction } from 'express';
 import { sequelize } from './sequelize'
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
-import { errorHandler, NotFoundError } from '@sgtickets/common';
+import { errorHandler, NotFoundError, BadRequestError } from '@sgtickets/common';
 import cors from 'cors';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -88,6 +88,24 @@ app.use(cookieSession({
   secure: process.env.NODE_ENV !== 'test' && process.env.NODE_ENV !== 'dev',
 }))
 
+app.use(async (req, res, next) => {
+  if (Date.now() > expires_in) {
+    const access_token = await axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${config.appId}&secret=${config.appSecret}`)
+    if (access_token.data.errcode) {
+      throw new BadRequestError(access_token.data.errmsg);
+    } else {
+      access_token.data.expires_in = Date.now() + (access_token.data.expires_in - 300) * 1000;
+      fs.writeFile(path.join(__dirname, './accessToken.json'), JSON.stringify(access_token.data), function (err) {
+        if (err) {
+          return console.error(err);
+        }
+      })
+    }
+  }
+  next()
+});
+
+
 app.use(wechatSession)
 app.use(signupRouter);
 app.use(signinRouter);
@@ -159,20 +177,6 @@ app.all('*', async (req, res) => {
 app.use(errorHandler);
 
 const start = async () => {
-
-  if (Date.now() > expires_in) {
-    const access_token = await axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${config.appId}&secret=${config.appSecret}`)
-    if (!access_token.data) {
-      throw new NotFoundError();
-    } else {
-      access_token.data.expires_in = Date.now() + (access_token.data.expires_in - 300) * 1000;
-      fs.writeFile(path.join(__dirname, './accessToken.json'), JSON.stringify(access_token.data), function (err) {
-        if (err) {
-          return console.error(err);
-        }
-      })
-    }
-  }
 
   try {
     await sequelize.authenticate();
