@@ -77,7 +77,7 @@ import { resourceUpdateRouter } from './routes/resource/update';
 
 
 const app = express();
-// app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors())
 app.set('trust proxy', true);
 app.use(json());
