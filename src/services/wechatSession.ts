@@ -65,7 +65,7 @@ export const wechatSession = async (req: Request, res: Response, next: NextFunct
             if (!existingUser) {
                 const user = await axios.get(`https://api.weixin.qq.com/cgi-bin/user/info?access_token=${access_token}&openid=${message.FromUserName}&lang=zh_CN`)
                 const createUser = await User.create({
-                    openid_fwh: user.data.openid,
+                    openid: user.data.openid,
                     nickname: user.data.nickname,
                     gender: user.data.sex,
                     language: user.data.language,

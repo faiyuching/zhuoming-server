@@ -28,29 +28,11 @@ router.post(
         throw new BadRequestError(userInfo.data.errmsg)
       }
 
-      const existingUser = await User.findOne({ where: { openid_fwh: userInfo.data.openid } });
+      const existingUser = await User.findOne({ where: { openid: userInfo.data.openid } });
 
       let user = {}
       if (!existingUser) {
-        user = await User.create({
-          subscribe: userInfo.data.subscribe,
-          openid_fwh: userInfo.data.openid,
-          nickname: userInfo.data.nickname,
-          sex: userInfo.data.sex,
-          language: userInfo.data.language,
-          city: userInfo.data.city,
-          province: userInfo.data.province,
-          country: userInfo.data.country,
-          headimgurl: userInfo.data.headimgurl,
-          subscribe_time: userInfo.data.subscribe_time,
-          remark: userInfo.data.remark,
-          groupid: userInfo.data.groupid,
-          tagid_list: userInfo.data.tagid_list,
-          subscribe_scene: userInfo.data.subscribe_scene,
-          qr_scene: userInfo.data.qr_scene,
-          qr_scene_str: userInfo.data.qr_scene_str
-
-        });
+        user = await User.create(userInfo.data);
       } else {
         user = existingUser
       }

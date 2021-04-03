@@ -2,103 +2,69 @@ import { sequelize } from '../sequelize'
 import { Model, DataTypes } from 'sequelize'
 
 interface UserInstance extends Model {
-    // id: number;
     user_id: string;
-    openid_web: string;
-    openid_fwh: string;
-    openid_xcx: string;
-    unionid: string;
     shimo: string;
     wechat: string;
-    facebook: string;
-    phone: string;
+    phone: number;
     email: string;
-    username: string;
-    nickname: string;
     password: string;
-    avatar: string;
-    role: string;
-    gender: string;
-    country: string;
-    province: string;
-    city: string;
-    language: string;
     job: string;
     skill: string;
     introduction: string;
+    subscribe: number;
+    openid: string;
+    nickname: string;
+    sex: number;
+    language: string;
+    city: string;
+    province: string;
+    country: string;
+    headimgurl: string;
+    subscribe_time: string;
+    unionid: string;
+    remark: string;
+    groupid: number;
+    subscribe_scene: string
+    qr_scene: number;
+    qr_scene_str: string
 }
 
 const User = sequelize.define<UserInstance>('User', {
-    // id: {
-    //     type: DataTypes.INTEGER,
-    //     primaryKey: true,
-    //     allowNull: false,
-    //     unique: true,
-    //     autoIncrement: true
-    // },
     user_id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
     },
-    openid_web: {
-        type: DataTypes.STRING(30),
-        unique: true,
-    },
-    openid_fwh: {
-        type: DataTypes.STRING(30),
-        unique: true,
-    },
-    openid_xcx: {
-        type: DataTypes.STRING(30),
-        unique: true,
-    },
-    unionid: {
-        type: DataTypes.STRING(12),
-        unique: true,
-    },
-    shimo: {
-        type: DataTypes.STRING(50),
-        unique: true,
-    },
-    wechat: {
-        type: DataTypes.STRING(20),
-        unique: true,
-    },
-    facebook: {
-        type: DataTypes.STRING(20),
-        unique: true,
-    },
+    shimo: DataTypes.STRING,
+    wechat: DataTypes.STRING(20),
     phone: {
         type: DataTypes.STRING(20),
-        unique: true,
+        unique: true
     },
     email: {
         type: DataTypes.STRING(50),
-        unique: true,
+        unique: true
     },
-    username: DataTypes.STRING(20),
-    nickname: DataTypes.STRING(20),
     password: DataTypes.STRING(255),
-    headimgurl: {
-        type: DataTypes.STRING(255),
-        defaultValue: 'https://res.wx.qq.com/a/wx_fed/webwx/res/static/img/2KriyDK.png'
-    },
-    role: {
-        type: DataTypes.ENUM,
-        values: ['super-admin', 'admin', 'volunteer', 'user'],
-        defaultValue: 'user'
-    },
-    sex: {
-        type: DataTypes.DECIMAL
-    },
-    country: DataTypes.STRING(20),
-    province: DataTypes.STRING(20),
-    city: DataTypes.STRING(20),
-    language: DataTypes.STRING(255),
     job: DataTypes.STRING(255),
     skill: DataTypes.STRING(255),
-    introduction: DataTypes.STRING(255)
+    introduction: DataTypes.STRING(255),
+    subscribe: DataTypes.DECIMAL,
+    openid: DataTypes.STRING(32),
+    nickname: DataTypes.STRING(32),
+    sex: DataTypes.DECIMAL,
+    language: DataTypes.STRING(10),
+    city: DataTypes.STRING(20),
+    province: DataTypes.STRING(20),
+    country: DataTypes.STRING(20),
+    headimgurl: DataTypes.STRING(255),
+    subscribe_time: DataTypes.INTEGER,
+    unionid: DataTypes.STRING(32),
+    remark: DataTypes.STRING(20),
+    groupid: DataTypes.INTEGER,
+    subscribe_scene: DataTypes.STRING(20),
+    qr_scene: DataTypes.INTEGER,
+    qr_scene_str: DataTypes.STRING(20),
 }, {
     tableName: 'users'
 })
