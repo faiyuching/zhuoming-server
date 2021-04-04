@@ -45,6 +45,10 @@ const User = sequelize.define<UserInstance>('User', {
         type: DataTypes.STRING(50),
         unique: true
     },
+    role: {
+        type: DataTypes.STRING(20),
+        defaultValue: "user"
+    },
     password: DataTypes.STRING(255),
     job: DataTypes.STRING(255),
     skill: DataTypes.STRING(255),

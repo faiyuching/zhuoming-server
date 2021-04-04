@@ -122,6 +122,7 @@ app.use(responseShowRouter);
 app.use(responseCreateRouter);
 app.use(responseDeleteRouter);
 app.use(responseUpdateRouter);
+app.use(responseCurrentRouter);
 
 app.use(groupIndexRouter);
 app.use(groupShowRouter);
@@ -178,6 +179,20 @@ app.all('*', async (req, res) => {
 app.use(errorHandler);
 
 const start = async () => {
+
+  if (Date.now() > expires_in) {
+    const access_token = await axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${config.appId}&secret=${config.appSecret}`)
+    if (access_token.data.errcode) {
+      throw new BadRequestError(access_token.data.errmsg);
+    } else {
+      access_token.data.expires_in = Date.now() + (access_token.data.expires_in - 300) * 1000;
+      fs.writeFile(path.join(__dirname, './accessToken.json'), JSON.stringify(access_token.data), function (err) {
+        if (err) {
+          return console.error(err);
+        }
+      })
+    }
+  }
 
   try {
     await sequelize.authenticate();
