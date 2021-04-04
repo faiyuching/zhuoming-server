@@ -40,7 +40,6 @@ router.post(
             role,
             description,
             reason,
-            begin_time: Date.now()
         });
 
         res.status(201).send(apply);

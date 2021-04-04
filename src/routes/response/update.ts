@@ -44,7 +44,8 @@ router.put(
       end_time: req.body.end_time,
       join_mode: req.body.join_mode,
       need_people: req.body.need_people,
-      statement: req.body.statement
+      statement: req.body.statement,
+      slogan: req.body.slogan
     });
     await response.save();
 

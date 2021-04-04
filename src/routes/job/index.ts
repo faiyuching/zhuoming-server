@@ -11,7 +11,14 @@ router.get('/jobs',
     // requireAuth,
     async (req: Request, res: Response) => {
 
-        const jobs = await Job.findAll({ include: [User, Responses, Group] });
+        const { response_id } = req.query
+
+        const jobs = await Job.findAll({
+            include: [User, Responses, Group],
+            order: [['created_at', 'DESC']],
+            where: { response_id: response_id }
+        });
+
         res.send(jobs);
 
     });

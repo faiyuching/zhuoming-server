@@ -12,25 +12,26 @@ const router = express.Router();
 router.post(
     '/response',
     // requireAuth,
-    [
-        body('response_name')
-            .trim()
-            .isLength({ min: 4, max: 20 })
-            .withMessage('response name must be between 4 and 20 characters'),
-    ],
-    validateRequest,
+    // [
+    //     body('response_name')
+    //         .trim()
+    //         .isLength({ min: 4, max: 20 })
+    //         .withMessage('response name must be between 4 and 20 characters'),
+    // ],
+    // validateRequest,
     async (req: Request, res: Response) => {
 
+        console.log(req.body)
         const {
             user_id,
             response_name,
-            // disaster_type,
-            // response_level,
-            // begin_time,
-            // needs_time,
-            // join_mode,
-            // need_people,
-            // statement
+            disaster_type,
+            response_level,
+            needs_time,
+            join_mode,
+            need_people,
+            slogan,
+            statement
         } = req.body;
 
         const existingResponse = await Responses.findOne({ where: { response_name: response_name } });
@@ -42,13 +43,13 @@ router.post(
         const response = await Responses.create({
             user_id,
             response_name,
-            // disaster_type,
-            // response_level,
-            begin_time: Date.now(),
-            // needs_time,
-            // join_mode,
-            // need_people,
-            // statement
+            disaster_type,
+            response_level,
+            needs_time,
+            join_mode,
+            need_people,
+            slogan,
+            statement
         });
 
         res.status(201).send(response);

@@ -30,7 +30,7 @@ router.post(
 
         const existingJob = await Job.findOne({ where: { job_name: job_name } });
 
-        if (existingJob) {
+        if (existingJob && existingJob.group_id == group_id) {
             throw new BadRequestError('Job name in use');
         }
 

@@ -9,8 +9,14 @@ const router = express.Router();
 router.get('/groups',
     // requireAuth,
     async (req: Request, res: Response) => {
+        const { response_id } = req.query
 
-        const groups = await Group.findAll({ include: [User, Responses] });
+        const groups = await Group.findAll({
+            include: [User, Responses],
+            order: [['created_at', 'DESC']],
+            where: { response_id: response_id }
+        });
+
         res.send(groups);
 
     });

@@ -24,9 +24,10 @@ router.post(
 
         const existingGroup = await Group.findOne({ where: { group_name: group_name } });
 
-        if (existingGroup) {
+        if (existingGroup && existingGroup.response_id == response_id) {
             throw new BadRequestError('Group name in use');
         }
+
 
         const group = await Group.create({ user_id, response_id, group_name, description });
 

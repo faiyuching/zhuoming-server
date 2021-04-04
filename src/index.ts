@@ -28,6 +28,7 @@ import { responseShowRouter } from './routes/response/show';
 import { responseCreateRouter } from './routes/response/create';
 import { responseDeleteRouter } from './routes/response/delete';
 import { responseUpdateRouter } from './routes/response/update';
+import { responseCurrentRouter } from './routes/response/current';
 
 import { groupIndexRouter } from './routes/group/index';
 import { groupShowRouter } from './routes/group/show';
