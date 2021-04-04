@@ -7,8 +7,7 @@ import { User } from '../user'
 
 interface TaskInstance extends Model {
     task_id: string;
-    creator: string;
-    leader: string;
+    user_id: string;
     group_id: string;
     response_id: string;
     job_id: string;
@@ -46,18 +45,6 @@ User.hasMany(Task, {
     onUpdate: 'CASCADE',
 });
 
-// Task.belongsTo(User, { foreignKey: 'leader', targetKey: 'id' });
-// User.hasMany(Task, {
-//     sourceKey: 'id',
-//     foreignKey: {
-//         name: 'leader',
-//         allowNull: false
-//     },
-//     as: 'tasks',
-//     onDelete: 'CASCADE',
-//     onUpdate: 'CASCADE',
-// });
-
 Task.belongsTo(Responses, { foreignKey: 'response_id', targetKey: 'response_id' });
 Responses.hasMany(Task, {
     sourceKey: 'response_id',
@@ -87,7 +74,6 @@ Job.hasMany(Task, {
     sourceKey: 'job_id',
     foreignKey: {
         name: 'job_id',
-        allowNull: false
     },
     as: 'tasks',
     onDelete: 'CASCADE',

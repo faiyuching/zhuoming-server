@@ -11,12 +11,32 @@ const router = express.Router();
 router.get('/tasks',
     // requireAuth,
     async (req: Request, res: Response) => {
-        console.log(req.query)
-        const tasks = await Task.findAll({
-            // where: { response_id: req.query.response_id },
-            order: [['task_id', 'DESC']],
-            include: [User, Responses, Group, Job],
-        });
+
+
+        const { response_id, group_id, job_id } = req.query
+
+        let tasks
+
+        if (response_id && !group_id && !job_id) {
+            tasks = await Task.findAll({
+                include: [Group, Job],
+                order: [['created_at', 'DESC']],
+                where: { response_id: response_id },
+            });
+        } else if (!response_id && group_id && !job_id) {
+            tasks = await Task.findAll({
+                include: [Group, Job],
+                order: [['created_at', 'DESC']],
+                where: { group_id: group_id },
+            });
+        } else if (!response_id && !group_id && job_id) {
+            tasks = await Task.findAll({
+                include: [Group, Job],
+                order: [['created_at', 'DESC']],
+                where: { job_id: job_id },
+            });
+        }
+
         res.send(tasks);
 
     });

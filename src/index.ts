@@ -1,4 +1,4 @@
-import express, { NextFunction } from 'express';
+import express from 'express';
 import { sequelize } from './sequelize'
 import 'express-async-errors';
 import { json } from 'body-parser';

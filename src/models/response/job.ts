@@ -6,8 +6,7 @@ import { User } from '../user'
 
 interface JobInstance extends Model {
     job_id: string;
-    creator: string;
-    leader: string;
+    user_id: string;
     group_id: string;
     response_id: string;
     job_name: string;
@@ -37,18 +36,6 @@ User.hasMany(Job, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
 });
-
-// Job.belongsTo(User, { foreignKey: 'leader', targetKey: 'id' });
-// User.hasMany(Job, {
-//     sourceKey: 'id',
-//     foreignKey: {
-//         name: 'leader',
-//         allowNull: false
-//     },
-//     as: 'jobs',
-//     onDelete: 'CASCADE',
-//     onUpdate: 'CASCADE',
-// });
 
 Job.belongsTo(Responses, { foreignKey: 'response_id', targetKey: 'response_id' });
 Responses.hasMany(Job, {

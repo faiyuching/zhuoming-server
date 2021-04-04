@@ -5,8 +5,7 @@ import { User } from '../user'
 
 interface GroupInstance extends Model {
     group_id: string;
-    creator: string;
-    leader: string;
+    user_id: string;
     response_id: string;
     group_name: string;
     description: string;

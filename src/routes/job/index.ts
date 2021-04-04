@@ -13,11 +13,21 @@ router.get('/jobs',
 
         const { response_id, group_id } = req.query
 
-        const jobs = await Job.findAll({
-            include: [User, Responses, Group],
-            order: [['created_at', 'DESC']],
-            where: { response_id: response_id, group_id: group_id }
-        });
+        let jobs
+
+        if (response_id && !group_id) {
+            jobs = await Job.findAll({
+                include: [User, Responses, Group],
+                order: [['created_at', 'DESC']],
+                where: { response_id: response_id },
+            });
+        } else if (!response_id && group_id) {
+            jobs = await Job.findAll({
+                include: [User, Responses, Group],
+                order: [['created_at', 'DESC']],
+                where: { group_id: group_id },
+            });
+        }
 
         res.send(jobs);
 

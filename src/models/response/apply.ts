@@ -12,7 +12,6 @@ interface ApplyInstance extends Model {
     role: string;
     description: string;
     fail_reason: string;
-    begin_time: Date;
     end_time: Date;
 }
 
@@ -34,7 +33,6 @@ const Apply = sequelize.define<ApplyInstance>('Apply', {
     },
     description: DataTypes.STRING,
     fail_reason: DataTypes.STRING,
-    begin_time: DataTypes.DATE,
     end_time: DataTypes.DATE,
 }, {
     tableName: 'applies'
@@ -69,7 +67,6 @@ Group.hasMany(Apply, {
     sourceKey: 'group_id',
     foreignKey: {
         name: 'group_id',
-        allowNull: false
     },
     as: 'applies',
     onDelete: 'CASCADE',
@@ -81,7 +78,6 @@ Job.hasMany(Apply, {
     sourceKey: 'job_id',
     foreignKey: {
         name: 'job_id',
-        allowNull: false
     },
     as: 'applies',
     onDelete: 'CASCADE',
@@ -93,7 +89,6 @@ Task.hasMany(Apply, {
     sourceKey: 'task_id',
     foreignKey: {
         name: 'task_id',
-        allowNull: false
     },
     as: 'applies',
     onDelete: 'CASCADE',
