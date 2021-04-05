@@ -16,6 +16,7 @@ interface TaskInstance extends Model {
     begin_time: Date;
     end_time: Date;
     need_people: number;
+    need_shimo: boolean;
 }
 
 const Task = sequelize.define<TaskInstance>('Task', {
@@ -29,6 +30,7 @@ const Task = sequelize.define<TaskInstance>('Task', {
     begin_time: DataTypes.DATE,
     end_time: DataTypes.DATE,
     need_people: DataTypes.DECIMAL,
+    need_shimo: DataTypes.BOOLEAN,
 }, {
     tableName: 'tasks'
 })

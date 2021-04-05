@@ -31,6 +31,12 @@ router.post(
             reason
         } = req.body;
 
+        const existingApply = await Apply.findOne({ where: { task_id: task_id, user_id: user_id } });
+
+        if (existingApply) {
+            throw new BadRequestError('Already applied');
+        }
+
         const apply = await Apply.create({
             user_id,
             response_id,

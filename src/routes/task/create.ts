@@ -26,7 +26,9 @@ router.post(
             group_id,
             job_id,
             task_name,
-            description
+            description,
+            need_shimo,
+            need_people
         } = req.body;
 
         const existingTask = await Task.findOne({ where: { task_name: task_name } });
@@ -42,6 +44,8 @@ router.post(
             job_id,
             task_name,
             description,
+            need_shimo,
+            need_people,
             begin_time: Date.now()
         });
 
