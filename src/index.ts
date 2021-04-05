@@ -23,61 +23,64 @@ import { LoginWechatBrowserRouter } from './routes/user/wechat-login-browser';
 
 import { getQRcodeRouter } from './routes/user/getQRcode';
 
-import { responseIndexRouter } from './routes/response/index';
-import { responseShowRouter } from './routes/response/show';
-import { responseCreateRouter } from './routes/response/create';
-import { responseDeleteRouter } from './routes/response/delete';
-import { responseUpdateRouter } from './routes/response/update';
-import { responseCurrentRouter } from './routes/response/current';
+import { responseIndexRouter } from './routes/response/response/index';
+import { responseShowRouter } from './routes/response/response/show';
+import { responseCreateRouter } from './routes/response/response/create';
+import { responseDeleteRouter } from './routes/response/response/delete';
+import { responseUpdateRouter } from './routes/response/response/update';
+import { responseCurrentRouter } from './routes/response/response/current';
 
-import { groupIndexRouter } from './routes/group/index';
-import { groupShowRouter } from './routes/group/show';
-import { groupCreateRouter } from './routes/group/create';
-import { groupDeleteRouter } from './routes/group/delete';
-import { groupUpdateRouter } from './routes/group/update';
+import { groupIndexRouter } from './routes/response/group/index';
+import { groupShowRouter } from './routes/response/group/show';
+import { groupCreateRouter } from './routes/response/group/create';
+import { groupDeleteRouter } from './routes/response/group/delete';
+import { groupUpdateRouter } from './routes/response/group/update';
 
-import { jobIndexRouter } from './routes/job/index';
-import { jobShowRouter } from './routes/job/show';
-import { jobCreateRouter } from './routes/job/create';
-import { jobDeleteRouter } from './routes/job/delete';
-import { jobUpdateRouter } from './routes/job/update';
+import { jobIndexRouter } from './routes/response/job/index';
+import { jobShowRouter } from './routes/response/job/show';
+import { jobCreateRouter } from './routes/response/job/create';
+import { jobDeleteRouter } from './routes/response/job/delete';
+import { jobUpdateRouter } from './routes/response/job/update';
 
-import { taskIndexRouter } from './routes/task/index';
-import { taskShowRouter } from './routes/task/show';
-import { taskCreateRouter } from './routes/task/create';
-import { taskDeleteRouter } from './routes/task/delete';
-import { taskUpdateRouter } from './routes/task/update';
+import { taskIndexRouter } from './routes/response/task/index';
+import { taskShowRouter } from './routes/response/task/show';
+import { taskCreateRouter } from './routes/response/task/create';
+import { taskDeleteRouter } from './routes/response/task/delete';
+import { taskUpdateRouter } from './routes/response/task/update';
 
-import { applyIndexRouter } from './routes/apply/index';
-import { applyShowRouter } from './routes/apply/show';
-import { applyCreateRouter } from './routes/apply/create';
-import { applyDeleteRouter } from './routes/apply/delete';
-import { applyUpdateRouter } from './routes/apply/update';
+import { applyIndexRouter } from './routes/response/apply/index';
+import { applyShowRouter } from './routes/response/apply/show';
+import { applyCreateRouter } from './routes/response/apply/create';
+import { applyDeleteRouter } from './routes/response/apply/delete';
+import { applyUpdateRouter } from './routes/response/apply/update';
 
-import { categoryIndexRouter } from './routes/category/index';
-import { categoryShowRouter } from './routes/category/show';
-import { categoryCreateRouter } from './routes/category/create';
-import { categoryDeleteRouter } from './routes/category/delete';
-import { categoryUpdateRouter } from './routes/category/update';
+import { categoryIndexRouter } from './routes/library/category/index';
+import { categoryShowRouter } from './routes/library/category/show';
+import { categoryCreateRouter } from './routes/library/category/create';
+import { categoryDeleteRouter } from './routes/library/category/delete';
+import { categoryUpdateRouter } from './routes/library/category/update';
 
-import { filetypeIndexRouter } from './routes/filetype/index';
-import { filetypeShowRouter } from './routes/filetype/show';
-import { filetypeCreateRouter } from './routes/filetype/create';
-import { filetypeDeleteRouter } from './routes/filetype/delete';
-import { filetypeUpdateRouter } from './routes/filetype/update';
+import { filetypeIndexRouter } from './routes/library/filetype/index';
+import { filetypeShowRouter } from './routes/library/filetype/show';
+import { filetypeCreateRouter } from './routes/library/filetype/create';
+import { filetypeDeleteRouter } from './routes/library/filetype/delete';
+import { filetypeUpdateRouter } from './routes/library/filetype/update';
 
-import { topicIndexRouter } from './routes/topic/index';
-import { topicShowRouter } from './routes/topic/show';
-import { topicCreateRouter } from './routes/topic/create';
-import { topicDeleteRouter } from './routes/topic/delete';
-import { topicUpdateRouter } from './routes/topic/update';
+import { topicIndexRouter } from './routes/library/topic/index';
+import { topicShowRouter } from './routes/library/topic/show';
+import { topicCreateRouter } from './routes/library/topic/create';
+import { topicDeleteRouter } from './routes/library/topic/delete';
+import { topicUpdateRouter } from './routes/library/topic/update';
 
-import { resourceIndexRouter } from './routes/resource/index';
-import { resourceShowRouter } from './routes/resource/show';
-import { resourceCreateRouter } from './routes/resource/create';
-import { resourceDeleteRouter } from './routes/resource/delete';
-import { resourceUpdateRouter } from './routes/resource/update';
+import { resourceIndexRouter } from './routes/library/resource/index';
+import { resourceShowRouter } from './routes/library/resource/show';
+import { resourceCreateRouter } from './routes/library/resource/create';
+import { resourceDeleteRouter } from './routes/library/resource/delete';
+import { resourceUpdateRouter } from './routes/library/resource/update';
 
+import { postCreateRouter } from './routes/forum/post/create'
+import { postsIndexRouter } from './routes/forum/post/index'
+import { postShowRouter } from './routes/forum/post/show'
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
@@ -171,6 +174,10 @@ app.use(resourceShowRouter);
 app.use(resourceCreateRouter);
 app.use(resourceDeleteRouter);
 app.use(resourceUpdateRouter);
+
+app.use(postCreateRouter);
+app.use(postsIndexRouter);
+app.use(postShowRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
