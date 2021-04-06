@@ -1,11 +1,11 @@
 import { sequelize } from '../../sequelize'
 import { Model, DataTypes } from 'sequelize'
 import { User } from '../user'
-import { Tag } from './tag'
 
 interface PostInstance extends Model {
     post_id: string;
-    post_content: string;
+    content: string;
+    tag: string
 }
 
 const Post = sequelize.define<PostInstance>('Post', {
@@ -14,7 +14,8 @@ const Post = sequelize.define<PostInstance>('Post', {
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
     },
-    post_content: DataTypes.TEXT,
+    content: DataTypes.TEXT,
+    tag: DataTypes.STRING(20),
 }, {
     tableName: 'posts'
 })
@@ -25,17 +26,6 @@ User.hasMany(Post, {
     foreignKey: {
         name: 'user_id',
         allowNull: false
-    },
-    as: 'posts',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
-});
-
-Post.belongsTo(Tag, { foreignKey: 'tag_id', targetKey: 'tag_id' });
-Tag.hasMany(Post, {
-    sourceKey: 'tag_id',
-    foreignKey: {
-        name: 'tag_id',
     },
     as: 'posts',
     onDelete: 'CASCADE',

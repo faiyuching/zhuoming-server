@@ -6,6 +6,8 @@ import {
 } from '@sgtickets/common';
 import { Post } from '../../../models/forum/post';
 import { User } from '../../../models/user';
+import { Like } from '../../../models/forum/like';
+import { Comment } from '../../../models/forum/comment';
 
 const router = express.Router();
 

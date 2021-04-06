@@ -5,7 +5,7 @@ import { Post } from './post'
 
 interface CommentInstance extends Model {
     comment_id: string;
-    comment_content: string;
+    content: string;
 }
 
 const Comment = sequelize.define<CommentInstance>('Comment', {
@@ -14,7 +14,7 @@ const Comment = sequelize.define<CommentInstance>('Comment', {
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
     },
-    comment_content: DataTypes.TEXT,
+    content: DataTypes.TEXT,
 }, {
     tableName: 'comments'
 })
@@ -26,18 +26,18 @@ User.hasMany(Comment, {
         name: 'user_id',
         allowNull: false
     },
-    as: 'posts',
+    as: 'comments',
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
 });
 
 Comment.belongsTo(Post, { foreignKey: 'post_id', targetKey: 'post_id' });
-Post.hasMany(User, {
+Post.hasMany(Comment, {
     sourceKey: 'post_id',
     foreignKey: {
         name: 'post_id',
     },
-    as: 'posts',
+    as: 'comments',
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
 });

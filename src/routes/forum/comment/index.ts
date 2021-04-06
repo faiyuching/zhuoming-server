@@ -6,11 +6,18 @@ import { Responses } from '../../../models/response/responses';
 
 const router = express.Router();
 
-router.get('/comment',
+router.get('/forum/:post_id/comment',
     // requireAuth,
     async (req: Request, res: Response) => {
 
-        const comment = await Comment.findAll();
+        const { post_id } = req.params
+
+        const comment = await Comment.findAll({
+            include: [User],
+            order: [['created_at', 'DESC']],
+            where: { post_id: post_id }
+        });
+
         res.send(comment);
 
     });

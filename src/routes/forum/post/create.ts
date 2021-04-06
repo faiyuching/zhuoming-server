@@ -14,9 +14,9 @@ router.post(
     validateRequest,
     async (req: Request, res: Response) => {
 
-        const { user_id, post_content } = req.body;
+        const { user_id, content, tag } = req.body;
 
-        const post = await Post.create({ user_id, post_content });
+        const post = await Post.create({ user_id, content, tag });
 
         res.status(201).send(post);
     }

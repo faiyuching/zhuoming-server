@@ -82,6 +82,11 @@ import { postCreateRouter } from './routes/forum/post/create'
 import { postsIndexRouter } from './routes/forum/post/index'
 import { postShowRouter } from './routes/forum/post/show'
 
+import { likeIndexRouter } from './routes/forum/like/index'
+import { commentIndexRouter } from './routes/forum/comment/index'
+import { commentCreateRouter } from './routes/forum/comment/create'
+import { likeCreateRouter } from './routes/forum/like/create'
+
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors())
@@ -95,6 +100,7 @@ app.use(cookieSession({
 app.use(async (req, res, next) => {
   if (Date.now() > expires_in) {
     const access_token = await axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${config.appId}&secret=${config.appSecret}`)
+    console.log(access_token)
     if (access_token.data.errcode) {
       throw new BadRequestError(access_token.data.errmsg);
     } else {
@@ -178,6 +184,10 @@ app.use(resourceUpdateRouter);
 app.use(postCreateRouter);
 app.use(postsIndexRouter);
 app.use(postShowRouter);
+app.use(likeIndexRouter);
+app.use(commentIndexRouter);
+app.use(commentCreateRouter);
+app.use(likeCreateRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

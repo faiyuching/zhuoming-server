@@ -6,11 +6,18 @@ import { Responses } from '../../../models/response/responses';
 
 const router = express.Router();
 
-router.get('/like',
+router.get('/forum/:post_id/like',
     // requireAuth,
     async (req: Request, res: Response) => {
 
-        const like = await Like.findAll();
+        const { post_id } = req.params
+
+        const like = await Like.findAll({
+            include: [User],
+            order: [['created_at', 'DESC']],
+            where: { post_id: post_id }
+        });
+
         res.send(like);
 
     });

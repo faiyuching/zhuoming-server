@@ -9,26 +9,15 @@ import { Comment } from '../../../models/forum/comment';
 const router = express.Router();
 
 router.post(
-    '/comment',
+    '/forum/comment/:post_id',
     // requireAuth,
-    [
-        body('comment_name')
-            .trim()
-            .isLength({ min: 2, max: 20 })
-            .withMessage('comment name must be between 2 and 20 characters'),
-    ],
     validateRequest,
     async (req: Request, res: Response) => {
 
-        const { user_id, comment_name } = req.body;
+        const { post_id } = req.params;
+        const { user_id, content } = req.body;
 
-        const existingComment = await Comment.findOne({ where: { comment_name: comment_name } });
-
-        if (existingComment) {
-            throw new BadRequestError('Comment name in use');
-        }
-
-        const comment = await Comment.create({ user_id, comment_name });
+        const comment = await Comment.create({ content, post_id, user_id });
 
         res.status(201).send(comment);
     }

@@ -9,26 +9,21 @@ import { Like } from '../../../models/forum/like';
 const router = express.Router();
 
 router.post(
-    '/like',
+    '/forum/:post_id/like',
     // requireAuth,
-    [
-        body('like_name')
-            .trim()
-            .isLength({ min: 2, max: 20 })
-            .withMessage('like name must be between 2 and 20 characters'),
-    ],
     validateRequest,
     async (req: Request, res: Response) => {
 
-        const { user_id, like_name } = req.body;
+        const { post_id } = req.params;
+        const { user_id } = req.body;
 
-        const existingLike = await Like.findOne({ where: { like_name: like_name } });
+        const existingLike = await Like.findOne({ where: { post_id: post_id, user_id: user_id } });
 
         if (existingLike) {
-            throw new BadRequestError('Like name in use');
+            throw new BadRequestError('Already like');
         }
 
-        const like = await Like.create({ user_id, like_name });
+        const like = await Like.create({ user_id, post_id });
 
         res.status(201).send(like);
     }
