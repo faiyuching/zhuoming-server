@@ -6,7 +6,7 @@ import { Responses } from '../../../models/response/responses';
 
 const router = express.Router();
 
-router.get('/forum/:post_id/like',
+router.get('/forum/like/:post_id',
     // requireAuth,
     async (req: Request, res: Response) => {
 

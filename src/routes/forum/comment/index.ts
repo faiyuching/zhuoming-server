@@ -6,7 +6,7 @@ import { Responses } from '../../../models/response/responses';
 
 const router = express.Router();
 
-router.get('/forum/:post_id/comment',
+router.get('/forum/comment/:post_id',
     // requireAuth,
     async (req: Request, res: Response) => {
 

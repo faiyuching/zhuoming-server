@@ -9,7 +9,7 @@ import { Like } from '../../../models/forum/like';
 const router = express.Router();
 
 router.post(
-    '/forum/:post_id/like',
+    '/forum/like/:post_id',
     // requireAuth,
     validateRequest,
     async (req: Request, res: Response) => {

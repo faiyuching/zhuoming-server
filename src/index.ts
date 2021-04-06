@@ -86,6 +86,7 @@ import { postDeleteRouter } from './routes/forum/post/delete'
 import { likeIndexRouter } from './routes/forum/like/index'
 import { commentIndexRouter } from './routes/forum/comment/index'
 import { commentCreateRouter } from './routes/forum/comment/create'
+import { commentDeleteRouter } from './routes/forum/comment/delete'
 import { likeCreateRouter } from './routes/forum/like/create'
 
 const app = express();
@@ -190,6 +191,7 @@ app.use(postDeleteRouter);
 app.use(likeIndexRouter);
 app.use(commentIndexRouter);
 app.use(commentCreateRouter);
+app.use(commentDeleteRouter);
 app.use(likeCreateRouter);
 
 app.all('*', async (req, res) => {

@@ -9,7 +9,7 @@ import { Comment } from '../../../models/forum/comment';
 const router = express.Router();
 
 router.delete(
-  '/comment/:comment_id',
+  '/forum/comment/:comment_id',
   // requireAuth,
   async (req: Request, res: Response) => {
     const { comment_id } = req.params;
