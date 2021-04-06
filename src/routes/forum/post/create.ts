@@ -14,7 +14,11 @@ router.post(
     validateRequest,
     async (req: Request, res: Response) => {
 
-        const { user_id, content, tag } = req.body;
+        let { user_id, content, tag } = req.body;
+
+        if (tag === "") {
+            tag = "Unlabeled"
+        }
 
         const post = await Post.create({ user_id, content, tag });
 
