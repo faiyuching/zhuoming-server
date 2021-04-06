@@ -10,10 +10,22 @@ router.get('/forum/post',
     // requireAuth,
     async (req: Request, res: Response) => {
 
-        const posts = await Post.findAll({
-            include: [User],
-            order: [['created_at', 'DESC']],
-        });
+        const { tag } = req.query
+
+        let posts
+
+        if (tag) {
+            posts = await Post.findAll({
+                include: [User],
+                order: [['created_at', 'DESC']],
+                where: { tag: tag },
+            });
+        } else {
+            posts = await Post.findAll({
+                include: [User],
+                order: [['created_at', 'DESC']],
+            });
+        }
 
         res.send(posts);
 
