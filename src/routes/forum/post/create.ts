@@ -17,7 +17,7 @@ router.post(
         let { user_id, content, tag } = req.body;
 
         if (tag === "") {
-            tag = "Unlabeled"
+            tag = "unlabeled"
         }
 
         const post = await Post.create({ user_id, content, tag });
