@@ -20,12 +20,13 @@ router.post(
         const existingLike = await Like.findOne({ where: { post_id: post_id, user_id: user_id } });
 
         if (existingLike) {
+            await Like.destroy({ where: { post_id: post_id, user_id: user_id } });
             throw new BadRequestError('Already like');
+        } else {
+            await Like.create({ user_id, post_id });
         }
 
-        const like = await Like.create({ user_id, post_id });
-
-        res.status(201).send(like);
+        res.status(201).send();
     }
 );
 

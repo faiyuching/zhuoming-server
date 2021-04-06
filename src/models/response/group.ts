@@ -17,8 +17,8 @@ const Group = sequelize.define<GroupInstance>('Group', {
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
     },
-    group_name: DataTypes.STRING(20),
-    description: DataTypes.STRING(255)
+    group_name: DataTypes.STRING,
+    description: DataTypes.STRING
 }, {
     tableName: 'groups'
 })

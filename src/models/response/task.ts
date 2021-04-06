@@ -25,11 +25,11 @@ const Task = sequelize.define<TaskInstance>('Task', {
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
     },
-    task_name: DataTypes.STRING(20),
-    description: DataTypes.STRING(255),
+    task_name: DataTypes.STRING,
+    description: DataTypes.STRING,
     begin_time: DataTypes.DATE,
     end_time: DataTypes.DATE,
-    need_people: DataTypes.DECIMAL,
+    need_people: DataTypes.STRING,
     need_shimo: DataTypes.BOOLEAN,
 }, {
     tableName: 'tasks'

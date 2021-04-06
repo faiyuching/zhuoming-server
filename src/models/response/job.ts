@@ -19,8 +19,8 @@ const Job = sequelize.define<JobInstance>('Job', {
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
     },
-    job_name: DataTypes.STRING(20),
-    description: DataTypes.STRING(255)
+    job_name: DataTypes.STRING,
+    description: DataTypes.STRING
 }, {
     tableName: 'jobs'
 })

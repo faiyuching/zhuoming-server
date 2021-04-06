@@ -23,7 +23,7 @@ router.post(
       // const refresh = await axios.get(`https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=${config.appId}&grant_type=refresh_token&refresh_token=${accesstoken.data.refresh_token}`)
       // console.log(refresh.data)
 
-      const userInfo = await axios.get(`https://api.weixin.qq.com/cgi-bin/user/info?access_token=${access_token}&openid=${accesstoken.data.openid}&lang=zh_CN`)
+      const userInfo = await axios.get(`https://api.weixin.qq.com/sns/userinfo?access_token=${accesstoken.data.access_token}&openid=${accesstoken.data.openid}&lang=zh_CN`)
       console.log(userInfo.data)
       if (userInfo.data.errcode) {
         throw new BadRequestError(userInfo.data.errmsg)
