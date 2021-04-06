@@ -9,7 +9,7 @@ import { Post } from '../../../models/forum/post';
 const router = express.Router();
 
 router.delete(
-  '/post/:post_id',
+  '/forum/post/:post_id',
   // requireAuth,
   async (req: Request, res: Response) => {
     const { post_id } = req.params;

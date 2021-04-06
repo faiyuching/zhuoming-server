@@ -14,7 +14,7 @@ router.get('/forum/:post_id/comment',
 
         const comment = await Comment.findAll({
             include: [User],
-            order: [['created_at', 'DESC']],
+            order: [['created_at', 'ASC']],
             where: { post_id: post_id }
         });
 

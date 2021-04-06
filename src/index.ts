@@ -81,6 +81,7 @@ import { resourceUpdateRouter } from './routes/library/resource/update';
 import { postCreateRouter } from './routes/forum/post/create'
 import { postsIndexRouter } from './routes/forum/post/index'
 import { postShowRouter } from './routes/forum/post/show'
+import { postDeleteRouter } from './routes/forum/post/delete'
 
 import { likeIndexRouter } from './routes/forum/like/index'
 import { commentIndexRouter } from './routes/forum/comment/index'
@@ -184,6 +185,8 @@ app.use(resourceUpdateRouter);
 app.use(postCreateRouter);
 app.use(postsIndexRouter);
 app.use(postShowRouter);
+app.use(postDeleteRouter);
+
 app.use(likeIndexRouter);
 app.use(commentIndexRouter);
 app.use(commentCreateRouter);
