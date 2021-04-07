@@ -40,6 +40,10 @@ router.post(
             throw new BadRequestError('response name in use');
         }
 
+        if (!user_id || !response_name || disaster_type || response_level || needs_time || need_people) {
+            throw new BadRequestError('response info is not completed');
+        }
+
         const response = await Responses.create({
             user_id,
             response_name,
