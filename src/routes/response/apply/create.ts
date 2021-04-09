@@ -6,6 +6,8 @@ import {
     BadRequestError
 } from '@sgtickets/common';
 import { Apply } from '../../../models/response/apply';
+import { Notice } from '../../../models/notice';
+
 const router = express.Router();
 
 router.post(
@@ -48,7 +50,15 @@ router.post(
             reason,
         });
 
-        res.status(201).send(apply);
+        const notice = await Notice.create({
+            user_id,
+            type: "task",
+            action: "apply",
+            stauts: "unread",
+            task_id: task_id,
+        });
+
+        res.status(201).send({ apply, notice });
     }
 );
 

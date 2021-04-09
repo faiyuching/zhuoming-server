@@ -8,6 +8,7 @@ import {
   BadRequestError,
 } from '@sgtickets/common';
 import { Task } from '../../../models/response/task';
+import { Moment } from '../../../models/moment';
 
 const router = express.Router();
 
@@ -42,7 +43,13 @@ router.put(
     });
     await task.save();
 
-    res.send(task);
+    const moment = await Moment.create({
+      type: "task",
+      action: "update",
+      task_id: task.task_id,
+    });
+
+    res.send({ task, moment });
   }
 );
 

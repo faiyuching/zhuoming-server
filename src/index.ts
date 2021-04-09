@@ -89,6 +89,9 @@ import { commentCreateRouter } from './routes/forum/comment/create'
 import { commentDeleteRouter } from './routes/forum/comment/delete'
 import { likeCreateRouter } from './routes/forum/like/create'
 
+import { momentIndexRouter } from './routes/moment/index'
+import { noticeIndexRouter } from './routes/notice/index'
+
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors())
@@ -193,6 +196,9 @@ app.use(commentIndexRouter);
 app.use(commentCreateRouter);
 app.use(commentDeleteRouter);
 app.use(likeCreateRouter);
+
+app.use(momentIndexRouter);
+app.use(noticeIndexRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

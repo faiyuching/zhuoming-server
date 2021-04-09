@@ -20,13 +20,6 @@ interface UserInstance extends Model {
     province: string;
     country: string;
     headimgurl: string;
-    subscribe_time: string;
-    unionid: string;
-    remark: string;
-    groupid: number;
-    subscribe_scene: string
-    qr_scene: number;
-    qr_scene_str: string
 }
 
 const User = sequelize.define<UserInstance>('User', {
@@ -61,14 +54,7 @@ const User = sequelize.define<UserInstance>('User', {
     city: DataTypes.STRING(20),
     province: DataTypes.STRING(20),
     country: DataTypes.STRING(20),
-    headimgurl: DataTypes.STRING(255),
-    subscribe_time: DataTypes.INTEGER,
-    unionid: DataTypes.STRING(32),
-    remark: DataTypes.STRING(20),
-    groupid: DataTypes.INTEGER,
-    subscribe_scene: DataTypes.STRING(20),
-    qr_scene: DataTypes.INTEGER,
-    qr_scene_str: DataTypes.STRING(20),
+    headimgurl: DataTypes.STRING(255)
 }, {
     tableName: 'users'
 })

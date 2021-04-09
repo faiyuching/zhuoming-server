@@ -38,8 +38,6 @@ router.put(
 
     apply.set({
       status: req.body.status,
-      role: req.body.role,
-      description: req.body.description
     });
     await apply.save();
 

@@ -5,6 +5,7 @@ import {
   NotAuthorizedError,
 } from '@sgtickets/common';
 import { Task } from '../../../models/response/task';
+import { Moment } from '../../../models/moment';
 
 const router = express.Router();
 
@@ -25,7 +26,13 @@ router.delete(
 
     await Task.destroy({ where: { task_id: task_id } });
 
-    res.status(204).send(task);
+    const moment = await Moment.create({
+      type: "task",
+      action: "delete",
+      task_id: task.task_id,
+    });
+
+    res.status(204).send({ task, moment });
   }
 );
 
