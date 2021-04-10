@@ -91,6 +91,7 @@ import { likeCreateRouter } from './routes/forum/like/create'
 
 import { momentIndexRouter } from './routes/moment/index'
 import { noticeIndexRouter } from './routes/notice/index'
+import { noticeUpdateRouter } from './routes/notice/update'
 
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
@@ -199,6 +200,7 @@ app.use(likeCreateRouter);
 
 app.use(momentIndexRouter);
 app.use(noticeIndexRouter);
+app.use(noticeUpdateRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

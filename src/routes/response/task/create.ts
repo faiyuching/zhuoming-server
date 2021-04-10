@@ -33,11 +33,11 @@ router.post(
             need_people
         } = req.body;
 
-        const existingTask = await Task.findOne({ where: { task_name: task_name } });
+        // const existingTask = await Task.findOne({ where: { task_name: task_name } });
 
-        if (existingTask) {
-            throw new BadRequestError('Task name in use');
-        }
+        // if (existingTask) {
+        //     throw new BadRequestError('Task name in use');
+        // }
 
         const task = await Task.create({
             user_id,

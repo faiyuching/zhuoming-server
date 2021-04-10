@@ -54,7 +54,7 @@ router.post(
             user_id,
             type: "task",
             action: "apply",
-            stauts: "unread",
+            status: "unread",
             task_id: task_id,
         });
 
