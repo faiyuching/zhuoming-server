@@ -20,6 +20,7 @@ import { currentUserRouter } from './routes/user/current-user';
 import { userIndexRouter } from './routes/user/index';
 import { userShowRouter } from './routes/user/show';
 import { LoginWechatBrowserRouter } from './routes/user/wechat-login-browser';
+import { userUpdateRouter } from './routes/user/update';
 
 import { getQRcodeRouter } from './routes/user/getQRcode';
 
@@ -131,6 +132,7 @@ app.use(userIndexRouter);
 app.use(userShowRouter);
 app.use(getQRcodeRouter);
 app.use(LoginWechatBrowserRouter);
+app.use(userUpdateRouter);
 
 app.use(responseIndexRouter);
 app.use(responseShowRouter);
