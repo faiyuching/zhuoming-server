@@ -6,6 +6,8 @@ import {
     BadRequestError
 } from '@sgtickets/common';
 import { Post } from '../../../models/forum/post';
+import { Responses } from '../../../models/response/responses';
+import { Moment } from '../../../models/moment';
 const router = express.Router();
 
 router.post(
@@ -21,6 +23,17 @@ router.post(
         }
 
         const post = await Post.create({ user_id, content, tag });
+
+        const existingResponse = await Responses.findOne({ where: { response_name: tag } });
+        if (existingResponse) {
+            const moment = await Moment.create({
+                user_id,
+                response_id: existingResponse.response_id,
+                type: "post",
+                action: "create",
+                post_id: post.post_id,
+            });
+        }
 
         res.status(201).send(post);
     }

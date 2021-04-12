@@ -5,6 +5,7 @@ import {
   NotAuthorizedError,
 } from '@sgtickets/common';
 import { Post } from '../../../models/forum/post';
+import { Moment } from '../../../models/moment';
 
 const router = express.Router();
 
@@ -24,6 +25,7 @@ router.delete(
     // }
 
     await Post.destroy({ where: { post_id: post_id } });
+    await Moment.destroy({ where: { post_id: post_id } });
 
     res.status(204).send(post);
   }

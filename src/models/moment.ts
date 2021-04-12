@@ -3,13 +3,15 @@ import { Model, DataTypes } from 'sequelize'
 import { User } from './user'
 import { Task } from './response/task'
 import { Responses } from './response/responses'
+import { Post } from './forum/post'
 
 interface MomentInstance extends Model {
     moment_id: string;
     user_id: string;
     type: string;
     action: string;
-    task_id: number;
+    task_id: string;
+    post_id: string;
 }
 
 const Moment = sequelize.define<MomentInstance>('Moment', {
@@ -41,7 +43,6 @@ Task.hasMany(Moment, {
     sourceKey: 'task_id',
     foreignKey: {
         name: 'task_id',
-        allowNull: false
     },
     as: 'moments',
     onDelete: 'CASCADE',
@@ -54,6 +55,17 @@ Responses.hasMany(Moment, {
     foreignKey: {
         name: 'response_id',
         allowNull: false
+    },
+    as: 'moments',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+});
+
+Moment.belongsTo(Post, { foreignKey: 'post_id', targetKey: 'post_id' });
+Post.hasMany(Moment, {
+    sourceKey: 'post_id',
+    foreignKey: {
+        name: 'post_id',
     },
     as: 'moments',
     onDelete: 'CASCADE',

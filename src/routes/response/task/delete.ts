@@ -26,13 +26,9 @@ router.delete(
 
     await Task.destroy({ where: { task_id: task_id } });
 
-    const moment = await Moment.create({
-      type: "task",
-      action: "delete",
-      task_id: task.task_id,
-    });
+    await Moment.destroy({ where: { task_id: task.task_id } });
 
-    res.status(204).send({ task, moment });
+    res.status(204).send({ task });
   }
 );
 
