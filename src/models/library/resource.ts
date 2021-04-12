@@ -9,8 +9,7 @@ interface ResourceInstance extends Model {
     resource_id: string;
     resource_name: string;
     resource_link: string;
-    picture_url: string;
-    description: string;
+    recomment_reason: string;
     topic_id: string;
     user_id: string;
 }
@@ -23,8 +22,7 @@ const Resource = sequelize.define<ResourceInstance>('Resource', {
     },
     resource_name: DataTypes.STRING(20),
     resource_link: DataTypes.STRING(255),
-    picture_url: DataTypes.STRING(255),
-    description: DataTypes.STRING(255),
+    recomment_reason: DataTypes.STRING(255),
 }, {
     tableName: 'resources'
 })
@@ -60,7 +58,7 @@ Filetype.hasMany(Resource, {
         name: 'filetype_id',
         allowNull: false
     },
-    as: 'filetypes',
+    as: 'resources',
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
 });
@@ -71,7 +69,7 @@ Topic.hasMany(Resource, {
     foreignKey: {
         name: 'topic_id'
     },
-    as: 'filetypes',
+    as: 'resources',
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
 });
