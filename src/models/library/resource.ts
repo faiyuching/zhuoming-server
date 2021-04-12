@@ -9,6 +9,7 @@ interface ResourceInstance extends Model {
     resource_id: string;
     resource_name: string;
     resource_link: string;
+    picture_url: string;
     recomment_reason: string;
     topic_id: string;
     user_id: string;
@@ -22,6 +23,7 @@ const Resource = sequelize.define<ResourceInstance>('Resource', {
     },
     resource_name: DataTypes.STRING,
     resource_link: DataTypes.STRING,
+    picture_url: DataTypes.STRING,
     recomment_reason: DataTypes.STRING,
 }, {
     tableName: 'resources'

@@ -18,9 +18,9 @@ const Topic = sequelize.define<TopicInstance>('Topic', {
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
     },
-    topic_name: DataTypes.STRING(20),
-    picture_url: DataTypes.STRING(255),
-    description: DataTypes.STRING(255)
+    topic_name: DataTypes.STRING,
+    picture_url: DataTypes.STRING,
+    description: DataTypes.STRING
 }, {
     tableName: 'topics'
 })

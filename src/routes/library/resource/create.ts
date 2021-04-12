@@ -16,9 +16,8 @@ router.post(
     // requireAuth,
     validateRequest,
     async (req: Request, res: Response) => {
-        console.log(req.body)
 
-        const { user_id, resource_link, resource_name, fileTypeValue, categoryValue, recomment_reason } = req.body;
+        const { user_id, resource_link, resource_name, fileTypeValue, categoryValue, picture_url, recomment_reason } = req.body;
 
         const filetype = await Filetype.findOne({ where: { filetype_name: fileTypeValue } });
         const category = await Category.findOne({ where: { category_name: categoryValue } });
@@ -40,6 +39,7 @@ router.post(
             user_id,
             resource_link,
             resource_name,
+            picture_url,
             filetype_id: filetype!.filetype_id,
             category_id: category!.category_id,
             recomment_reason
