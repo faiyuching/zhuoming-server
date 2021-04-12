@@ -16,6 +16,7 @@ router.post(
     // requireAuth,
     validateRequest,
     async (req: Request, res: Response) => {
+        console.log(req.body)
 
         const { user_id, resource_link, resource_name, fileTypeValue, categoryValue, recomment_reason } = req.body;
 
