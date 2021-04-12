@@ -20,9 +20,9 @@ const Resource = sequelize.define<ResourceInstance>('Resource', {
         defaultValue: DataTypes.UUIDV1,
         primaryKey: true
     },
-    resource_name: DataTypes.STRING(20),
-    resource_link: DataTypes.STRING(255),
-    recomment_reason: DataTypes.STRING(255),
+    resource_name: DataTypes.STRING,
+    resource_link: DataTypes.STRING,
+    recomment_reason: DataTypes.STRING,
 }, {
     tableName: 'resources'
 })

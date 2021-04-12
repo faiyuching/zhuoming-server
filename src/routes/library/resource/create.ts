@@ -14,12 +14,6 @@ const router = express.Router();
 router.post(
     '/resource',
     // requireAuth,
-    [
-        body('resource_name')
-            .trim()
-            .isLength({ min: 2, max: 20 })
-            .withMessage('resource name must be between 2 and 20 characters'),
-    ],
     validateRequest,
     async (req: Request, res: Response) => {
 
@@ -29,11 +23,11 @@ router.post(
         const category = await Category.findOne({ where: { category_name: categoryValue } });
         const existingResource = await Resource.findOne({ where: { resource_name: resource_name } });
 
-        if (filetype) {
+        if (!filetype) {
             throw new NotFoundError();
         }
 
-        if (category) {
+        if (!category) {
             throw new NotFoundError();
         }
 
