@@ -2,6 +2,7 @@ import { sequelize } from '../../sequelize'
 import { Model, DataTypes } from 'sequelize'
 import { User } from '../user'
 import { Category } from './category'
+import { Resource } from './resource'
 
 interface TopicInstance extends Model {
     topic_id: string;

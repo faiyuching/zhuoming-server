@@ -11,7 +11,6 @@ interface ResourceInstance extends Model {
     resource_link: string;
     picture_url: string;
     recomment_reason: string;
-    topic_id: string;
     user_id: string;
 }
 
@@ -59,17 +58,6 @@ Filetype.hasMany(Resource, {
     foreignKey: {
         name: 'filetype_id',
         allowNull: false
-    },
-    as: 'resources',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
-});
-
-Resource.belongsTo(Topic, { foreignKey: 'topic_id', targetKey: 'topic_id' });
-Topic.hasMany(Resource, {
-    sourceKey: 'topic_id',
-    foreignKey: {
-        name: 'topic_id'
     },
     as: 'resources',
     onDelete: 'CASCADE',

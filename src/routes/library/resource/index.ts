@@ -3,8 +3,6 @@ import { requireAuth } from '@sgtickets/common';
 import { Resource } from '../../../models/library/resource';
 import { Filetype } from '../../../models/library/filetype';
 import { Category } from '../../../models/library/category';
-import { User } from '../../../models/user';
-import { Responses } from '../../../models/response/responses';
 
 const router = express.Router();
 
@@ -16,6 +14,7 @@ router.get('/resources',
             include: [Filetype, Category],
             order: [['created_at', 'DESC']],
         });
+
         res.send(resources);
 
     });

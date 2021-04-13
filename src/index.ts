@@ -94,6 +94,10 @@ import { momentIndexRouter } from './routes/moment/index'
 import { noticeIndexRouter } from './routes/notice/index'
 import { noticeUpdateRouter } from './routes/notice/update'
 
+import { ResourceTopicCreateRouter } from './routes/library/resource-topic/create'
+import { ResourceTopicDeleteRouter } from './routes/library/resource-topic/delete'
+import { resourceTopicIndexRouter } from './routes/library/resource-topic/index'
+
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors())
@@ -203,6 +207,10 @@ app.use(likeCreateRouter);
 app.use(momentIndexRouter);
 app.use(noticeIndexRouter);
 app.use(noticeUpdateRouter);
+
+app.use(resourceTopicIndexRouter);
+app.use(ResourceTopicCreateRouter);
+app.use(ResourceTopicDeleteRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
