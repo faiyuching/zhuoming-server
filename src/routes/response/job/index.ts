@@ -15,13 +15,13 @@ router.get('/jobs',
 
         let jobs
 
-        if (response_id && !group_id) {
+        if (group_id === "undefined") {
             jobs = await Job.findAll({
                 include: [User, Responses, Group],
                 order: [['created_at', 'DESC']],
                 where: { response_id: response_id },
             });
-        } else if (!response_id && group_id) {
+        } else {
             jobs = await Job.findAll({
                 include: [User, Responses, Group],
                 order: [['created_at', 'DESC']],
