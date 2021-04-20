@@ -11,7 +11,7 @@ import axios from 'axios'
 import { config } from './config'
 import { expires_in } from './accessToken.json'
 
-import { wechatSession } from './services/wechatSession'
+// import { wechatSession } from './services/wechatSession'
 
 import { signupRouter } from './routes/user/signup';
 import { signinRouter } from './routes/user/signin';
@@ -127,7 +127,7 @@ app.use(async (req, res, next) => {
 });
 
 
-app.use(wechatSession)
+// app.use(wechatSession)
 app.use(signupRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
