@@ -30,7 +30,6 @@ router.post(
             task_id,
             role,
             description,
-            reason
         } = req.body;
 
         const existingApply = await Apply.findOne({ where: { task_id: task_id, user_id: user_id } });
@@ -47,7 +46,6 @@ router.post(
             task_id,
             role,
             description,
-            reason,
         });
 
         const notice = await Notice.create({
