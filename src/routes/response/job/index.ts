@@ -15,7 +15,7 @@ router.get('/jobs',
 
         let jobs
 
-        if (group_id === "undefined") {
+        if (group_id === "undefined" || !group_id) {
             jobs = await Job.findAll({
                 include: [User, Responses, Group],
                 order: [['created_at', 'DESC']],
